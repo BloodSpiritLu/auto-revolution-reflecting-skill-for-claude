@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd ~/.claude/skills && git pull --rebase origin main 2>/dev/null || true",
+            "timeout": 10000
+          }
+        ]
+      }
+    ]
+  }
+}
