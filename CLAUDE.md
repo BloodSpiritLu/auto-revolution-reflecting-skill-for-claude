@@ -8,30 +8,33 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## 项目概述
 
-本项目旨在为 Claude Code 构建一个**自我进化技能系统** —— 一个反馈闭环，让 Claude 能够将学到的用户偏好和纠正持久化到 Markdown 技能文件中，成为未来系统提示词的一部分。
+本项目是一个 **Claude Code Skills 开发项目**，用于构建自我进化技能系统。核心功能是通过 `/reflect` 命令，让 Claude 能够将学到的用户偏好和纠正持久化到技能文件中。
 
-## 核心概念
+## 核心 Skill
 
-系统在对话中捕获用户的纠正，按置信度分类，并持久化到技能文件：
+- **reflect** - 反射技能，分析对话历史并提取规则
+- **general_preferences** - 全局通用偏好
+- **coding_standards** - 全局代码规范
+- **project_standards** - 项目特定规范
+- **tech_stack** - 项目技术栈
 
-- **高置信度**：用户明确声明的规则/禁止项
-- **中置信度**：本次会话中成功的模式
-- **低置信度**：值得持续观察的趋势
+## 目录结构
 
-## 需要实现的关键组件
+```
+skills/                    # Skills 开发目录（Git 跟踪）
+├── reflect/SKILL.md      # /reflect 命令
+├── general_preferences/  # 全局偏好模板
+├── coding_standards/     # 全局代码规范模板
+├── project_standards/    # 项目规范模板
+└── tech_stack/           # 技术栈模板
+docs/                     # 开发文档
+INSTALL.md                # 安装说明
+```
 
-1. **反射技能** (`reflect.md`) - 一个元技能，分析对话历史、提取经验、更新其他技能文件
-2. **领域技能文件** - 按类别划分的文件（如 `coding_standards.md`），积累学到的规则
-3. **Git 集成** - 对技能文件进行版本控制，追踪 AI 的进化历程并支持回滚
-4. **Hooks（可选）** - 通过 Claude Code 的 `stop` 钩子实现自动化反射
+## 部署
 
-## 架构说明
-
-- 技能以纯 Markdown 文件形式存储在 `skills/` 目录中
-- 无需向量数据库 —— 纯文本持久化
-- 技能文件作为 Claude 系统提示词的一部分被读取
-- Git 提供可审计性和回滚能力
+详见 `INSTALL.md`。全局 Skills 复制到 `~/.claude/skills/`，项目级 Skills 复制到项目的 `.claude/skills/`。
 
 ## 实现计划
 
-详细的实现计划请查看：`.claude/plan.md`
+详见 `.claude/plan.md`
