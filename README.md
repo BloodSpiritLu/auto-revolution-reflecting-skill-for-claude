@@ -181,6 +181,26 @@ Directly edit the corresponding SKILL.md file and delete the unwanted lines.
 
 Yes. `~/.claude/skills` on Windows corresponds to `%USERPROFILE%\.claude\skills`.
 
+## Roadmap
+
+### Current
+- **Conflict = Update**: When a new rule conflicts with an old one, the old rule is updated directly (simplest approach)
+
+### Planned (Not Yet Implemented)
+
+| Feature | Description | Complexity |
+|---------|-------------|------------|
+| **Periodic Review** | Add `/review` command to manually trigger rule review | Low |
+| **Confidence Decay** | High→Medium→Low→Delete, rules not validated over time auto-downgrade | Medium |
+| **Time Decay** | Track creation time, prompt cleanup for rules older than N months | Medium |
+| **Capacity Limit** | Limit N rules per category, prompt deletion when exceeded | Low |
+| **Usage Tracking** | Track how often rules are "triggered", clean up low-frequency rules | High |
+
+### Trigger Options (Future)
+- Time-driven: Remind every N days/weeks
+- Event-driven: Trigger after N reflects
+- Manual: User calls `/review`
+
 ## License
 
 MIT
